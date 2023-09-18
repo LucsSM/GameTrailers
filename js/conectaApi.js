@@ -8,7 +8,7 @@ async function listaVideos() {
 
 async function criaVideo(titulo, descricao, url, imagem) {
      
-    const conexao = await fetch("http://localhost:3000/videos", 
+    const conexao = await fetch("http://localhost:3000/video", 
     {
         method: "POST",
         headers: {
@@ -21,6 +21,11 @@ async function criaVideo(titulo, descricao, url, imagem) {
             imagem: imagem
         })    
     });
+
+    if(!conexao.ok) {
+        
+        throw new Error("Video não pode ser enviado"); 
+    }
 
     const conexaoConvertida = await conexao.json();
 
